@@ -311,3 +311,48 @@ nav{
     background:#1d4ed8;
 
 }
+/* ===========================
+   DARK MODE
+=========================== */
+
+body.dark{
+
+    --background:#121212;
+
+    --surface:#1f1f1f;
+
+    --text:#f2f2f2;
+
+    --border:#333;
+
+    background:var(--background);
+
+    color:var(--text);
+
+}
+
+body.dark header{
+
+    background:#1b1b1b;
+
+}
+
+body.dark .card{
+
+    background:var(--surface);
+
+}
+
+body.dark nav a{
+
+    color:white;
+
+}
+
+body.dark input{
+
+    background:#252525;
+
+    color:white;
+
+}

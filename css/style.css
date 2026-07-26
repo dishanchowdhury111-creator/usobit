@@ -268,3 +268,46 @@ nav{
 }
 
 }
+/* ===========================
+   NAVIGATION
+=========================== */
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+#themeButton{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+#themeButton:hover{
+
+    transform:rotate(15deg);
+
+    background:#1d4ed8;
+
+}

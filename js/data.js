@@ -1,51 +1,64 @@
-const TOOLS = [
+const DATABASE = {
 
-    {
-        id: "scientific-calculator",
-        name: "Scientific Calculator",
-        category: "calculators",
-        icon: "🧮",
-        description: "Advanced mathematical calculator."
-    },
+calculators: [
 
-    {
-        id: "bmi-calculator",
-        name: "BMI Calculator",
-        category: "calculators",
-        icon: "⚖️",
-        description: "Calculate your Body Mass Index."
-    },
+{
+id:"scientific-calculator",
+name:"Scientific Calculator",
+icon:"🧮",
+description:"Advanced mathematical calculator."
+},
 
-    {
-        id: "age-calculator",
-        name: "Age Calculator",
-        category: "calculators",
-        icon: "🎂",
-        description: "Find your exact age."
-    },
+{
+id:"bmi-calculator",
+name:"BMI Calculator",
+icon:"⚖️",
+description:"Calculate your BMI."
+},
 
-    {
-        id: "length-converter",
-        name: "Length Converter",
-        category: "converters",
-        icon: "📏",
-        description: "Convert units of length."
-    },
+{
+id:"age-calculator",
+name:"Age Calculator",
+icon:"🎂",
+description:"Calculate your exact age."
+}
 
-    {
-        id: "temperature-converter",
-        name: "Temperature Converter",
-        category: "converters",
-        icon: "🌡️",
-        description: "Convert Celsius, Fahrenheit and Kelvin."
-    },
+],
 
-    {
-        id: "password-generator",
-        name: "Password Generator",
-        category: "tools",
-        icon: "🔑",
-        description: "Generate secure passwords."
-    }
+converters: [
 
-];
+{
+id:"length-converter",
+name:"Length Converter",
+icon:"📏",
+description:"Convert units of length."
+},
+
+{
+id:"temperature-converter",
+name:"Temperature Converter",
+icon:"🌡️",
+description:"Convert temperature units."
+}
+
+],
+
+tools: [
+
+{
+id:"password-generator",
+name:"Password Generator",
+icon:"🔑",
+description:"Generate secure passwords."
+}
+
+]
+
+};
+
+const TOOLS = Object.entries(DATABASE).flatMap(([category, list]) =>
+    list.map(tool => ({
+        ...tool,
+        category
+    }))
+);

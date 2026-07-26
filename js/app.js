@@ -153,3 +153,34 @@ if (document.getElementById("toolContainer")) {
     }
 
 }
+// ===========================
+// DARK MODE
+// ===========================
+
+const themeButton = document.getElementById("themeButton");
+
+if (themeButton) {
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+        themeButton.textContent = "☀️";
+
+    }
+
+    themeButton.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+        const dark = document.body.classList.contains("dark");
+
+        themeButton.textContent = dark ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", dark ? "dark" : "light");
+
+    });
+
+}

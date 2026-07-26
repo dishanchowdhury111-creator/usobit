@@ -25,45 +25,56 @@ const TOOL_FUNCTIONS = {
 
 function renderScientificCalculator(container){
 
-    container.innerHTML += `
+container.innerHTML=`
 
-    <div class="calculator">
+<div class="calculator">
 
-        <input
-            id="calcDisplay"
-            type="text"
-            placeholder="0"
-            readonly>
+<input
+id="calcDisplay"
+type="text"
+placeholder="0"
+readonly>
 
-        <div class="calcGrid">
+<div class="calcGrid">
 
-            <button onclick="press('7')">7</button>
-            <button onclick="press('8')">8</button>
-            <button onclick="press('9')">9</button>
-            <button onclick="press('/')">÷</button>
+<button onclick="clearDisplay()">C</button>
+<button onclick="backspace()">⌫</button>
+<button onclick="press('(')">(</button>
+<button onclick="press(')')">)</button>
 
-            <button onclick="press('4')">4</button>
-            <button onclick="press('5')">5</button>
-            <button onclick="press('6')">6</button>
-            <button onclick="press('*')">×</button>
+<button onclick="sqrtValue()">√</button>
+<button onclick="square()">x²</button>
+<button onclick="press('**')">xʸ</button>
+<button onclick="press('/')">÷</button>
 
-            <button onclick="press('1')">1</button>
-            <button onclick="press('2')">2</button>
-            <button onclick="press('3')">3</button>
-            <button onclick="press('-')">−</button>
+<button onclick="press('7')">7</button>
+<button onclick="press('8')">8</button>
+<button onclick="press('9')">9</button>
+<button onclick="press('*')">×</button>
 
-            <button onclick="press('0')">0</button>
-            <button onclick="press('.')">.</button>
-            <button onclick="calculate()">=</button>
-            <button onclick="press('+')">+</button>
+<button onclick="press('4')">4</button>
+<button onclick="press('5')">5</button>
+<button onclick="press('6')">6</button>
+<button onclick="press('-')">−</button>
 
-            <button onclick="clearDisplay()">C</button>
+<button onclick="press('1')">1</button>
+<button onclick="press('2')">2</button>
+<button onclick="press('3')">3</button>
+<button onclick="press('+')">+</button>
 
-        </div>
+<button onclick="press('0')">0</button>
+<button onclick="press('.')">.</button>
+<button onclick="press(Math.PI)">π</button>
+<button onclick="press(Math.E)">e</button>
 
-    </div>
+<button style="grid-column:span 4;"
+onclick="calculate()">=</button>
 
-    `;
+</div>
+
+</div>
+
+`;
 
 }
 function renderBMICalculator(container){

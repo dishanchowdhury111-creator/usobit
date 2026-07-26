@@ -356,3 +356,62 @@ body.dark input{
     color:white;
 
 }
+/* ===========================
+   CALCULATOR
+=========================== */
+
+.calculator{
+
+    max-width:420px;
+
+    margin:auto;
+
+}
+
+#calcDisplay{
+
+    width:100%;
+
+    padding:18px;
+
+    font-size:28px;
+
+    text-align:right;
+
+    margin-bottom:20px;
+
+}
+
+.calcGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+.calcGrid button{
+
+    padding:18px;
+
+    font-size:20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.calcGrid button:hover{
+
+    background:#1d4ed8;
+
+}

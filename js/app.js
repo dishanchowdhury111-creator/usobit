@@ -1,35 +1,48 @@
-// =========================
-// USOBIT APP ENGINE
-// =========================
+// ===========================
+// USOBIT ENGINE
+// ===========================
 
-// Get URL parameters
 const params = new URLSearchParams(window.location.search);
 
-// Current page
-const page = window.location.pathname;
-
-
-// -------------------------
-// HOME PAGE
-// -------------------------
+// ---------- HOME PAGE ----------
 
 if (document.getElementById("featuredTools")) {
 
     const container = document.getElementById("featuredTools");
+    const searchBox = document.getElementById("searchBox");
 
-    TOOLS.forEach(tool => {
+    function displayTools(list) {
 
-        container.innerHTML += `
+        container.innerHTML = "";
 
-        <a class="card" href="tool.html?id=${tool.id}">
+        list.forEach(tool => {
 
-            <h3>${tool.icon} ${tool.name}</h3>
+            container.innerHTML += `
+                <a class="card" href="tool.html?id=${tool.id}">
+                    <h3>${tool.icon} ${tool.name}</h3>
+                    <p>${tool.description}</p>
+                </a>
+            `;
 
-            <p>${tool.description}</p>
+        });
 
-        </a>
+    }
 
-        `;
+    displayTools(TOOLS);
+
+    searchBox.addEventListener("input", function () {
+
+        const search = this.value.toLowerCase();
+
+        const results = TOOLS.filter(tool =>
+
+            tool.name.toLowerCase().includes(search) ||
+
+            tool.description.toLowerCase().includes(search)
+
+        );
+
+        displayTools(results);
 
     });
 
@@ -37,22 +50,18 @@ if (document.getElementById("featuredTools")) {
 
 
 
-// -------------------------
-// CATEGORY PAGE
-// -------------------------
+// ---------- CATEGORY PAGE ----------
 
 if (document.getElementById("categoryGrid")) {
 
     const category = params.get("category");
 
+    const grid = document.getElementById("categoryGrid");
+
     document.getElementById("categoryTitle").textContent =
         category.charAt(0).toUpperCase() + category.slice(1);
 
-    const grid = document.getElementById("categoryGrid");
-
-    TOOLS.filter(tool => tool.category === category)
-
-    .forEach(tool => {
+    DATABASE[category].forEach(tool => {
 
         grid.innerHTML += `
 
@@ -72,9 +81,7 @@ if (document.getElementById("categoryGrid")) {
 
 
 
-// -------------------------
-// TOOL PAGE
-// -------------------------
+// ---------- TOOL PAGE ----------
 
 if (document.getElementById("toolContainer")) {
 
@@ -96,7 +103,7 @@ if (document.getElementById("toolContainer")) {
 
             <br><br>
 
-            <h3>This tool is under development.</h3>
+            <div id="toolApp"></div>
 
         `;
 
@@ -104,11 +111,7 @@ if (document.getElementById("toolContainer")) {
 
     else {
 
-        document.getElementById("toolContainer").innerHTML = `
-
-            <h2>Tool not found.</h2>
-
-        `;
+        document.getElementById("toolContainer").innerHTML = "<h2>Tool Not Found</h2>";
 
     }
 

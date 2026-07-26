@@ -104,6 +104,13 @@ if (document.getElementById("toolContainer")) {
             <br><br>
 
             <div id="toolApp"></div>
+            const app = document.getElementById("toolApp");
+
+            if (TOOL_FUNCTIONS[tool.id]) {
+
+                TOOL_FUNCTIONS[tool.id](app);
+
+            }
 
         `;
 

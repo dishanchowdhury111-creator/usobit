@@ -14,7 +14,23 @@ if (document.getElementById("featuredTools")) {
     function displayTools(list) {
 
         container.innerHTML = "";
+        if (list.length === 0) {
 
+    container.innerHTML = `
+
+        <div class="card">
+
+            <h2>😕 No tools found</h2>
+
+            <p>Try another keyword.</p>
+
+        </div>
+
+    `;
+
+    return;
+
+}
         list.forEach(tool => {
 
             container.innerHTML += `
@@ -34,13 +50,27 @@ if (document.getElementById("featuredTools")) {
 
         const search = this.value.toLowerCase();
 
-        const results = TOOLS.filter(tool =>
+        const results = TOOLS.filter(tool => {
 
-            tool.name.toLowerCase().includes(search) ||
+    const text = [
 
-            tool.description.toLowerCase().includes(search)
+        tool.name,
 
-        );
+        tool.description,
+
+        tool.category,
+
+        ...(tool.keywords || [])
+
+    ]
+
+    .join(" ")
+
+    .toLowerCase();
+
+    return text.includes(search);
+
+});
 
         displayTools(results);
 

@@ -3,17 +3,56 @@ const DATABASE = {
 calculators: [
 
 {
-id:"scientific-calculator",
-name:"Scientific Calculator",
-icon:"🧮",
-description:"Advanced mathematical calculator."
+    id: "scientific-calculator",
+
+    name: "Scientific Calculator",
+
+    category: "calculators",
+
+    icon: "🧮",
+
+    description: "Advanced mathematical calculator.",
+
+    keywords: [
+        "math",
+        "scientific",
+        "calculator",
+        "trigonometry",
+        "log",
+        "power",
+        "sin",
+        "cos",
+        "tan"
+    ],
+
+    featured: true,
+
+    popular: true
 },
 
 {
-id:"bmi-calculator",
-name:"BMI Calculator",
-icon:"⚖️",
-description:"Calculate your BMI."
+    id:"bmi-calculator",
+
+    name:"BMI Calculator",
+
+    category:"calculators",
+
+    icon:"⚖️",
+
+    description:"Calculate your Body Mass Index.",
+
+    keywords:[
+        "bmi",
+        "body",
+        "mass",
+        "weight",
+        "height",
+        "health"
+    ],
+
+    featured:true,
+
+    popular:false
 },
 
 {

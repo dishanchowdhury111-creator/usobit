@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usobit</title>
 
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+
+    <div class="logo">
+        <a href="index.html">Usobit</a>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="category.html?category=calculators">Calculators</a>
+        <a href="category.html?category=converters">Converters</a>
+        <a href="category.html?category=tools">Tools</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <h1>Everything. In One Place.</h1>
+
+    <p>
+        Free calculators, converters and useful tools.
+    </p>
+
+    <input
+        id="searchBox"
+        type="text"
+        placeholder="Search tools..."
+    >
+
+</section>
+
+<section>
+
+    <h2>Featured Tools</h2>
+
+    <div id="featuredTools" class="grid">
+
+    </div>
+
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/router.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

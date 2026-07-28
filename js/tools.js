@@ -400,7 +400,8 @@ container.innerHTML += `
         type="range"
         min="6"
         max="32"
-        value="12">
+        value="12"
+        oninput="updateLengthValue(this.value)">
 
     <div style="text-align:center;font-weight:bold;">
         <span id="lengthValue">12</span> characters
@@ -411,7 +412,7 @@ container.innerHTML += `
     <label><input type="checkbox" id="useNumbers" checked> Numbers (0-9)</label>
     <label><input type="checkbox" id="useSymbols"> Symbols (!@#$%)</label>
 
-    <button id="generatePasswordBtn">
+    <button onclick="generatePassword()">
         Generate Password
     </button>
 
@@ -419,7 +420,7 @@ container.innerHTML += `
         Click "Generate Password"
     </div>
 
-    <button id="copyPasswordBtn">
+    <button onclick="copyPassword()">
         📋 Copy Password
     </button>
 
@@ -427,20 +428,11 @@ container.innerHTML += `
 
 `;
 
-const lengthSlider=document.getElementById("passwordLength");
-const lengthValue=document.getElementById("lengthValue");
+}
 
-lengthSlider.addEventListener("input",()=>{
-    lengthValue.textContent=lengthSlider.value;
-});
+function updateLengthValue(value){
 
-document
-    .getElementById("generatePasswordBtn")
-    .addEventListener("click",generatePassword);
-
-document
-    .getElementById("copyPasswordBtn")
-    .addEventListener("click",copyPassword);
+document.getElementById("lengthValue").textContent=value;
 
 }
 
@@ -475,19 +467,19 @@ let password="";
 
 for(let i=0;i<length;i++){
 
-    password+=chars[Math.floor(Math.random()*chars.length)];
+    password+=chars.charAt(Math.floor(Math.random()*chars.length));
 }
 
 document.getElementById("passwordResult").innerHTML=`
     <strong>Generated Password:</strong><br>
-    <code style="font-size:20px;word-break:break-all;">${password}</code>
+    <code id="generatedPassword" style="font-size:20px;word-break:break-all;">${password}</code>
 `;
 
 }
 
 function copyPassword(){
 
-const code=document.querySelector("#passwordResult code");
+const code=document.getElementById("generatedPassword");
 
 if(!code){
     alert("Generate a password first.");

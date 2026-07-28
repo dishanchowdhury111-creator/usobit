@@ -389,7 +389,96 @@ document.getElementById("tempResult").innerHTML=`
 }
 function renderPasswordGenerator(container){
 
-    container.innerHTML += "<p>This tool is coming soon.</p>";
+container.innerHTML += `
+
+<div class="converter">
+
+    <label><strong>Password Length</strong></label>
+
+    <input
+        id="passwordLength"
+        type="range"
+        min="6"
+        max="32"
+        value="12"
+        oninput="document.getElementById('lengthValue').textContent=this.value">
+
+    <div style="text-align:center;font-weight:bold;">
+        <span id="lengthValue">12</span> characters
+    </div>
+
+    <label><input type="checkbox" id="useUpper" checked> Uppercase (A-Z)</label>
+    <label><input type="checkbox" id="useLower" checked> Lowercase (a-z)</label>
+    <label><input type="checkbox" id="useNumbers" checked> Numbers (0-9)</label>
+    <label><input type="checkbox" id="useSymbols"> Symbols (!@#$%)</label>
+
+    <button onclick="generatePassword()">
+        Generate Password
+    </button>
+
+    <div id="passwordResult" class="resultBox">
+        Click "Generate Password"
+    </div>
+
+    <button onclick="copyPassword()">
+        📋 Copy Password
+    </button>
+
+</div>
+
+`;
+
+}
+function generatePassword(){
+
+const length=parseInt(document.getElementById("passwordLength").value);
+
+let chars="";
+
+if(document.getElementById("useUpper").checked)
+    chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+if(document.getElementById("useLower").checked)
+    chars+="abcdefghijklmnopqrstuvwxyz";
+
+if(document.getElementById("useNumbers").checked)
+    chars+="0123456789";
+
+if(document.getElementById("useSymbols").checked)
+    chars+="!@#$%^&*()_+-=[]{}|;:,.<>?";
+
+if(chars.length===0){
+
+    document.getElementById("passwordResult").textContent=
+        "Select at least one character type.";
+
+    return;
+
+}
+
+let password="";
+
+for(let i=0;i<length;i++){
+
+    password+=chars[Math.floor(Math.random()*chars.length)];
+}
+
+document.getElementById("passwordResult").innerHTML=`
+    <strong>Generated Password:</strong><br>
+    <code style="font-size:20px;word-break:break-all;">${password}</code>
+`;
+
+}
+
+function copyPassword(){
+
+const code=document.querySelector("#passwordResult code");
+
+if(!code) return;
+
+navigator.clipboard.writeText(code.textContent);
+
+alert("Password copied to clipboard!");
 
 }
 function press(value){

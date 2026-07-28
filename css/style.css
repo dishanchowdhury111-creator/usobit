@@ -415,3 +415,69 @@ body.dark input{
     background:#1d4ed8;
 
 }
+/* ===========================
+   CONVERTER
+=========================== */
+
+.converter{
+
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+
+}
+
+.converter input,
+.converter select{
+
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:16px;
+
+}
+
+.converterRow{
+
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:15px;
+
+}
+
+.converterRow span{
+
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+.converter button{
+
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+
+}
+
+.converter button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.resultBox{
+
+    padding:18px;
+    border-radius:12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    font-size:18px;
+    line-height:1.6;
+
+}

@@ -8,7 +8,6 @@ const params = new URLSearchParams(window.location.search);
 
 if (document.getElementById("featuredTools")) {
 
-```
 const container = document.getElementById("featuredTools");
 const searchBox = document.getElementById("searchBox");
 
@@ -58,7 +57,6 @@ searchBox.addEventListener("input", function () {
 
     displayTools(results);
 });
-```
 
 }
 
@@ -66,7 +64,6 @@ searchBox.addEventListener("input", function () {
 
 if (document.getElementById("categoryGrid")) {
 
-```
 const category = params.get("category");
 const grid = document.getElementById("categoryGrid");
 
@@ -81,7 +78,6 @@ DATABASE[category].forEach(tool => {
         </a>
     `;
 });
-```
 
 }
 
@@ -89,7 +85,6 @@ DATABASE[category].forEach(tool => {
 
 if (document.getElementById("toolContainer")) {
 
-```
 const id = params.get("id");
 const tool = TOOLS.find(t => t.id === id);
 
@@ -115,7 +110,6 @@ if (tool) {
 } else {
     document.getElementById("toolContainer").innerHTML = "<h2>Tool Not Found</h2>";
 }
-```
 
 }
 
@@ -127,7 +121,6 @@ const themeButton = document.getElementById("themeButton");
 
 if (themeButton) {
 
-```
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "dark") {
@@ -144,6 +137,5 @@ themeButton.addEventListener("click", () => {
 
     localStorage.setItem("theme", dark ? "dark" : "light");
 });
-```
 
 }

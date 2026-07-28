@@ -91,10 +91,87 @@ function renderAgeCalculator(container){
 
 function renderLengthConverter(container){
 
-    container.innerHTML += "<p>This converter is coming soon.</p>";
+container.innerHTML += `
+
+<div class="converter">
+
+    <input
+        id="lengthInput"
+        type="number"
+        placeholder="Enter value">
+
+    <div class="converterRow">
+
+        <select id="fromLength">
+            <option value="m">Metre</option>
+            <option value="km">Kilometre</option>
+            <option value="cm">Centimetre</option>
+            <option value="mm">Millimetre</option>
+            <option value="inch">Inch</option>
+            <option value="ft">Foot</option>
+        </select>
+
+        <span>→</span>
+
+        <select id="toLength">
+            <option value="m">Metre</option>
+            <option value="km">Kilometre</option>
+            <option value="cm">Centimetre</option>
+            <option value="mm">Millimetre</option>
+            <option value="inch">Inch</option>
+            <option value="ft">Foot</option>
+        </select>
+
+    </div>
+
+    <button onclick="convertLength()">
+        Convert
+    </button>
+
+    <div id="lengthResult" class="resultBox">
+        Result will appear here
+    </div>
+
+</div>
+
+`;
+
+}
+function convertLength(){
+
+const value=parseFloat(document.getElementById("lengthInput").value);
+
+if(isNaN(value)){
+
+    document.getElementById("lengthResult").innerHTML=
+        "Please enter a valid number.";
+
+    return;
 
 }
 
+const from=document.getElementById("fromLength").value;
+const to=document.getElementById("toLength").value;
+
+const factors={
+    mm:0.001,
+    cm:0.01,
+    m:1,
+    km:1000,
+    inch:0.0254,
+    ft:0.3048
+};
+
+const metres=value*factors[from];
+
+const result=metres/factors[to];
+
+document.getElementById("lengthResult").innerHTML=`
+    <strong>${value} ${from}</strong><br>
+    = <strong>${result.toFixed(6)} ${to}</strong>
+`;
+
+}
 function renderTemperatureConverter(container){
 
     container.innerHTML += "<p>This converter is coming soon.</p>";

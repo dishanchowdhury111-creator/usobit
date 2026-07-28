@@ -400,8 +400,7 @@ container.innerHTML += `
         type="range"
         min="6"
         max="32"
-        value="12"
-        oninput="document.getElementById('lengthValue').textContent=this.value">
+        value="12">
 
     <div style="text-align:center;font-weight:bold;">
         <span id="lengthValue">12</span> characters
@@ -412,7 +411,7 @@ container.innerHTML += `
     <label><input type="checkbox" id="useNumbers" checked> Numbers (0-9)</label>
     <label><input type="checkbox" id="useSymbols"> Symbols (!@#$%)</label>
 
-    <button onclick="generatePassword()">
+    <button id="generatePasswordBtn">
         Generate Password
     </button>
 
@@ -420,7 +419,7 @@ container.innerHTML += `
         Click "Generate Password"
     </div>
 
-    <button onclick="copyPassword()">
+    <button id="copyPasswordBtn">
         📋 Copy Password
     </button>
 
@@ -428,7 +427,23 @@ container.innerHTML += `
 
 `;
 
+const lengthSlider=document.getElementById("passwordLength");
+const lengthValue=document.getElementById("lengthValue");
+
+lengthSlider.addEventListener("input",()=>{
+    lengthValue.textContent=lengthSlider.value;
+});
+
+document
+    .getElementById("generatePasswordBtn")
+    .addEventListener("click",generatePassword);
+
+document
+    .getElementById("copyPasswordBtn")
+    .addEventListener("click",copyPassword);
+
 }
+
 function generatePassword(){
 
 const length=parseInt(document.getElementById("passwordLength").value);
@@ -474,11 +489,14 @@ function copyPassword(){
 
 const code=document.querySelector("#passwordResult code");
 
-if(!code) return;
+if(!code){
+    alert("Generate a password first.");
+    return;
+}
 
-navigator.clipboard.writeText(code.textContent);
-
-alert("Password copied to clipboard!");
+navigator.clipboard.writeText(code.textContent)
+    .then(()=>alert("Password copied to clipboard!"))
+    .catch(()=>alert("Copy failed."));
 
 }
 function press(value){

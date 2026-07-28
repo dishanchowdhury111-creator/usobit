@@ -79,10 +79,71 @@ onclick="calculate()">=</button>
 }
 function renderBMICalculator(container){
 
-    container.innerHTML += "<p>This calculator is coming soon.</p>";
+container.innerHTML += `
+
+<div class="converter">
+
+    <input
+        id="bmiWeight"
+        type="number"
+        placeholder="Weight (kg)">
+
+    <input
+        id="bmiHeight"
+        type="number"
+        placeholder="Height (cm)">
+
+    <button onclick="calculateBMI()">
+        Calculate BMI
+    </button>
+
+    <div id="bmiResult" class="resultBox">
+        Your BMI result will appear here
+    </div>
+
+</div>
+
+`;
+
+}
+function calculateBMI(){
+
+const weight=parseFloat(document.getElementById("bmiWeight").value);
+const heightCm=parseFloat(document.getElementById("bmiHeight").value);
+
+if(isNaN(weight)||isNaN(heightCm)||weight<=0||heightCm<=0){
+
+    document.getElementById("bmiResult").innerHTML=
+        "Please enter valid weight and height values.";
+
+    return;
 
 }
 
+const height=heightCm/100;
+
+const bmi=weight/(height*height);
+
+let category;
+
+if(bmi<18.5)
+    category="Underweight";
+
+else if(bmi<25)
+    category="Normal weight";
+
+else if(bmi<30)
+    category="Overweight";
+
+else
+    category="Obesity";
+
+document.getElementById("bmiResult").innerHTML=`
+    <strong>BMI:</strong> ${bmi.toFixed(2)}<br>
+    <strong>Category:</strong> ${category}
+`;
+
+}
 function renderAgeCalculator(container){
 
     container.innerHTML += "<p>This calculator is coming soon.</p>";
@@ -174,10 +235,92 @@ document.getElementById("lengthResult").innerHTML=`
 }
 function renderTemperatureConverter(container){
 
-    container.innerHTML += "<p>This converter is coming soon.</p>";
+container.innerHTML += `
+
+<div class="converter">
+
+    <input
+        id="tempInput"
+        type="number"
+        placeholder="Enter temperature">
+
+    <div class="converterRow">
+
+        <select id="fromTemp">
+            <option value="C">Celsius (°C)</option>
+            <option value="F">Fahrenheit (°F)</option>
+            <option value="K">Kelvin (K)</option>
+        </select>
+
+        <span>→</span>
+
+        <select id="toTemp">
+            <option value="C">Celsius (°C)</option>
+            <option value="F">Fahrenheit (°F)</option>
+            <option value="K">Kelvin (K)</option>
+        </select>
+
+    </div>
+
+    <button onclick="convertTemperature()">
+        Convert
+    </button>
+
+    <div id="tempResult" class="resultBox">
+        Result will appear here
+    </div>
+
+</div>
+
+`;
+
+}
+function convertTemperature(){
+
+const value=parseFloat(document.getElementById("tempInput").value);
+
+if(isNaN(value)){
+
+    document.getElementById("tempResult").innerHTML=
+        "Please enter a valid temperature.";
+
+    return;
 
 }
 
+const from=document.getElementById("fromTemp").value;
+const to=document.getElementById("toTemp").value;
+
+let celsius;
+
+// Convert to Celsius first
+if(from==="C")
+    celsius=value;
+
+else if(from==="F")
+    celsius=(value-32)*5/9;
+
+else if(from==="K")
+    celsius=value-273.15;
+
+let result;
+
+// Convert from Celsius to target
+if(to==="C")
+    result=celsius;
+
+else if(to==="F")
+    result=celsius*9/5+32;
+
+else if(to==="K")
+    result=celsius+273.15;
+
+document.getElementById("tempResult").innerHTML=`
+    <strong>${value} °${from}</strong><br>
+    = <strong>${result.toFixed(2)} °${to}</strong>
+`;
+
+}
 function renderPasswordGenerator(container){
 
     container.innerHTML += "<p>This tool is coming soon.</p>";

@@ -490,3 +490,18 @@ body.dark input{
     font-size:16px;
 
 }
+/* ===========================
+   CHECKBOXES & RANGE
+=========================== */
+
+.converter label input[type="checkbox"]{
+
+    margin-right:8px;
+
+}
+
+input[type="range"]{
+
+    width:100%;
+
+}

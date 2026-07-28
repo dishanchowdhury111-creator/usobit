@@ -337,94 +337,90 @@ function clearDisplay(){
     document.getElementById("calcDisplay").value = "";
 
 }
+function backspace(){
 
-function calculate(){
-    function backspace(){
+    const display=document.getElementById("calcDisplay");
 
-const display=document.getElementById("calcDisplay");
-
-display.value=display.value.slice(0,-1);
+    display.value=display.value.slice(0,-1);
 
 }
 
 function square(){
 
-const display=document.getElementById("calcDisplay");
-
-try{
-
-display.value=Math.pow(Number(display.value),2);
-
-}
-
-catch{
-
-display.value="Error";
-
-}
-
-}
-
-function sqrtValue(){
-
-const display=document.getElementById("calcDisplay");
-
-try{
-
-display.value=Math.sqrt(Number(display.value));
-
-}
-
-catch{
-
-display.value="Error";
-
-}
-
-}
-    const display = document.getElementById("calcDisplay");
+    const display=document.getElementById("calcDisplay");
 
     try{
 
-        display.value = Function("return " + display.value)();
+        display.value=Math.pow(Number(display.value),2);
 
     }
 
     catch{
 
-        display.value = "Error";
+        display.value="Error";
 
     }
 
 }
-document.addEventListener("keydown",function(e){
 
-const display=document.getElementById("calcDisplay");
+function sqrtValue(){
 
-if(!display) return;
+    const display=document.getElementById("calcDisplay");
 
-if(e.key>='0'&&e.key<='9') press(e.key);
+    try{
 
-else if("+-*/().".includes(e.key)) press(e.key);
+        display.value=Math.sqrt(Number(display.value));
 
-else if(e.key==="Enter"){
+    }
 
-e.preventDefault();
+    catch{
 
-calculate();
+        display.value="Error";
 
-}
-
-else if(e.key==="Backspace"){
-
-backspace();
+    }
 
 }
 
-else if(e.key==="Delete"){
+function calculate(){
 
-clearDisplay();
+    const display=document.getElementById("calcDisplay");
+
+    try{
+
+        display.value=Function("return " + display.value)();
+
+    }
+
+    catch{
+
+        display.value="Error";
+
+    }
 
 }
+document.addEventListener("keydown", function(e){
+
+    const display = document.getElementById("calcDisplay");
+
+    if(!display) return;
+
+    if(e.key >= '0' && e.key <= '9')
+        press(e.key);
+
+    else if("+-*/().".includes(e.key))
+        press(e.key);
+
+    else if(e.key === "Enter"){
+        e.preventDefault();
+        calculate();
+    }
+
+    else if(e.key === "Backspace"){
+        backspace();
+    }
+
+    else if(e.key === "Delete"){
+        clearDisplay();
+    }
 
 });

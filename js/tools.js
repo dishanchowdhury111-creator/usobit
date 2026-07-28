@@ -146,10 +146,76 @@ document.getElementById("bmiResult").innerHTML=`
 }
 function renderAgeCalculator(container){
 
-    container.innerHTML += "<p>This calculator is coming soon.</p>";
+container.innerHTML += `
+
+<div class="converter">
+
+    <label><strong>Date of Birth</strong></label>
+
+    <input
+        id="birthDate"
+        type="date">
+
+    <button onclick="calculateAge()">
+        Calculate Age
+    </button>
+
+    <div id="ageResult" class="resultBox">
+        Your age will appear here
+    </div>
+
+</div>
+
+`;
+
+}
+function calculateAge(){
+
+const birthInput=document.getElementById("birthDate").value;
+
+if(!birthInput){
+
+    document.getElementById("ageResult").innerHTML=
+        "Please select your date of birth.";
+
+    return;
 
 }
 
+const birthDate=new Date(birthInput);
+const today=new Date();
+
+let years=today.getFullYear()-birthDate.getFullYear();
+let months=today.getMonth()-birthDate.getMonth();
+let days=today.getDate()-birthDate.getDate();
+
+if(days<0){
+
+    months--;
+
+    const previousMonth=new Date(today.getFullYear(),today.getMonth(),0);
+
+    days+=previousMonth.getDate();
+}
+
+if(months<0){
+
+    years--;
+
+    months+=12;
+}
+
+const totalDays=Math.floor((today-birthDate)/(1000*60*60*24));
+
+document.getElementById("ageResult").innerHTML=`
+    <strong>Years:</strong> ${years}<br>
+    <strong>Months:</strong> ${months}<br>
+    <strong>Days:</strong> ${days}<br>
+    <hr style="margin:12px 0;">
+    <strong>Total Days Lived:</strong> ${totalDays.toLocaleString()}
+`;
+
+}
 function renderLengthConverter(container){
 
 container.innerHTML += `

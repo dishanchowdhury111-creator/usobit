@@ -119,7 +119,49 @@ function clearDisplay(){
 }
 
 function calculate(){
+    function backspace(){
 
+const display=document.getElementById("calcDisplay");
+
+display.value=display.value.slice(0,-1);
+
+}
+
+function square(){
+
+const display=document.getElementById("calcDisplay");
+
+try{
+
+display.value=Math.pow(Number(display.value),2);
+
+}
+
+catch{
+
+display.value="Error";
+
+}
+
+}
+
+function sqrtValue(){
+
+const display=document.getElementById("calcDisplay");
+
+try{
+
+display.value=Math.sqrt(Number(display.value));
+
+}
+
+catch{
+
+display.value="Error";
+
+}
+
+}
     const display = document.getElementById("calcDisplay");
 
     try{
@@ -135,3 +177,34 @@ function calculate(){
     }
 
 }
+document.addEventListener("keydown",function(e){
+
+const display=document.getElementById("calcDisplay");
+
+if(!display) return;
+
+if(e.key>='0'&&e.key<='9') press(e.key);
+
+else if("+-*/().".includes(e.key)) press(e.key);
+
+else if(e.key==="Enter"){
+
+e.preventDefault();
+
+calculate();
+
+}
+
+else if(e.key==="Backspace"){
+
+backspace();
+
+}
+
+else if(e.key==="Delete"){
+
+clearDisplay();
+
+}
+
+});

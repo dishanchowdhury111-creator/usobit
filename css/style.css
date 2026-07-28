@@ -481,3 +481,12 @@ body.dark input{
     line-height:1.6;
 
 }
+/* ===========================
+   FORM LABELS
+=========================== */
+
+.converter label{
+
+    font-size:16px;
+
+}

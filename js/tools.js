@@ -372,6 +372,49 @@ container.innerHTML += `
 `;
 
 }
+function addGST(){
+
+const amount=parseFloat(document.getElementById("gstAmount").value);
+const rate=parseFloat(document.getElementById("gstRate").value);
+
+if(isNaN(amount)){
+    document.getElementById("gstResult").innerHTML=
+        "Please enter a valid amount.";
+    return;
+}
+
+const gst=amount*rate/100;
+const total=amount+gst;
+
+document.getElementById("gstResult").innerHTML=`
+    <strong>Original Amount:</strong> ₹${amount.toFixed(2)}<br>
+    <strong>GST (${rate}%):</strong> ₹${gst.toFixed(2)}<br>
+    <strong>Total Amount:</strong> ₹${total.toFixed(2)}
+`;
+
+}
+
+function removeGST(){
+
+const total=parseFloat(document.getElementById("gstAmount").value);
+const rate=parseFloat(document.getElementById("gstRate").value);
+
+if(isNaN(total)){
+    document.getElementById("gstResult").innerHTML=
+        "Please enter a valid amount.";
+    return;
+}
+
+const original=total/(1+rate/100);
+const gst=total-original;
+
+document.getElementById("gstResult").innerHTML=`
+    <strong>Total Amount:</strong> ₹${total.toFixed(2)}<br>
+    <strong>Original Amount:</strong> ₹${original.toFixed(2)}<br>
+    <strong>GST Included:</strong> ₹${gst.toFixed(2)}
+`;
+
+}
 function renderTemperatureConverter(container){
 
 container.innerHTML += `

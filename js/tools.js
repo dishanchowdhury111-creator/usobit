@@ -7,7 +7,7 @@ const TOOL_FUNCTIONS = {
     "scientific-calculator": renderScientificCalculator,
 
     "bmi-calculator": renderBMICalculator,
-
+    "percentage-calculator": renderPercentageCalculator,
     "age-calculator": renderAgeCalculator,
 
     "length-converter": renderLengthConverter,

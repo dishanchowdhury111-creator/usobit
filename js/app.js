@@ -2,64 +2,75 @@
 // USOBIT APP ENGINE
 // ===========================
 
-// HOME PAGE
-const featuredContainer = document.getElementById("featuredTools");
+const params = new URLSearchParams(window.location.search);
 
-if (featuredContainer) {
+// ---------------- HOME PAGE ----------------
 
-    TOOLS.forEach(tool => {
+if (document.getElementById("featuredTools")) {
 
-        featuredContainer.innerHTML += `
-            <a class="card" href="tool.html?id=${tool.id}">
-                <h3>${tool.icon} ${tool.name}</h3>
-                <p>${tool.description}</p>
-            </a>
-        `;
-
-    });
-
+    const container = document.getElementById("featuredTools");
     const searchBox = document.getElementById("searchBox");
 
-    if (searchBox) {
+    function displayTools(list) {
 
+        container.innerHTML = "";
+
+        if (list.length === 0) {
+            container.innerHTML = `
+                <div class="card">
+                    <h3>😕 No tools found</h3>
+                    <p>Try another keyword.</p>
+                </div>
+            `;
+            return;
+        }
+
+        list.forEach(tool => {
+            container.innerHTML += `
+                <a class="card" href="tool.html?id=${tool.id}">
+                    <h3>${tool.icon} ${tool.name}</h3>
+                    <p>${tool.description}</p>
+                </a>
+            `;
+        });
+    }
+
+    displayTools(TOOLS);
+
+    if (searchBox) {
         searchBox.addEventListener("input", function () {
 
             const search = this.value.toLowerCase();
 
-            const filtered = TOOLS.filter(tool => {
-                return (
-                    tool.name.toLowerCase().includes(search) ||
-                    tool.description.toLowerCase().includes(search)
-                );
+            const results = TOOLS.filter(tool => {
+
+                const text = [
+                    tool.name,
+                    tool.description,
+                    tool.category,
+                    ...(tool.keywords || [])
+                ].join(" ").toLowerCase();
+
+                return text.includes(search);
             });
 
-            featuredContainer.innerHTML = "";
-
-            filtered.forEach(tool => {
-                featuredContainer.innerHTML += `
-                    <a class="card" href="tool.html?id=${tool.id}">
-                        <h3>${tool.icon} ${tool.name}</h3>
-                        <p>${tool.description}</p>
-                    </a>
-                `;
-            });
+            displayTools(results);
         });
     }
 }
 
-// CATEGORY PAGE
-const categoryGrid = document.getElementById("categoryGrid");
+// ---------------- CATEGORY PAGE ----------------
 
-if (categoryGrid) {
+if (document.getElementById("categoryGrid")) {
 
-    const params = new URLSearchParams(window.location.search);
     const category = params.get("category");
+    const grid = document.getElementById("categoryGrid");
 
     document.getElementById("categoryTitle").textContent =
         category.charAt(0).toUpperCase() + category.slice(1);
 
     (DATABASE[category] || []).forEach(tool => {
-        categoryGrid.innerHTML += `
+        grid.innerHTML += `
             <a class="card" href="tool.html?id=${tool.id}">
                 <h3>${tool.icon} ${tool.name}</h3>
                 <p>${tool.description}</p>
@@ -68,23 +79,24 @@ if (categoryGrid) {
     });
 }
 
-// TOOL PAGE
-const toolContainer = document.getElementById("toolContainer");
+// ---------------- TOOL PAGE ----------------
 
-if (toolContainer) {
+if (document.getElementById("toolContainer")) {
 
-    const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-
     const tool = TOOLS.find(t => t.id === id);
 
     if (tool) {
 
-        toolContainer.innerHTML = `
+        document.title = tool.name + " | Usobit";
+
+        const container = document.getElementById("toolContainer");
+
+        container.innerHTML = `
             <h1>${tool.icon} ${tool.name}</h1>
             <br>
             <p>${tool.description}</p>
-            <br>
+            <br><br>
             <div id="toolApp"></div>
         `;
 
@@ -93,7 +105,33 @@ if (toolContainer) {
         if (TOOL_FUNCTIONS[tool.id]) {
             TOOL_FUNCTIONS[tool.id](app);
         }
+
     } else {
-        toolContainer.innerHTML = "<h2>Tool not found</h2>";
+        document.getElementById("toolContainer").innerHTML =
+            "<h2>Tool Not Found</h2>";
     }
+}
+
+// ---------------- DARK MODE ----------------
+
+const themeButton = document.getElementById("themeButton");
+
+if (themeButton) {
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+        themeButton.textContent = "☀️";
+    }
+
+    themeButton.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+
+        const dark = document.body.classList.contains("dark");
+
+        themeButton.textContent = dark ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", dark ? "dark" : "light");
+    });
 }

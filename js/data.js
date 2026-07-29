@@ -1,7 +1,15 @@
 const DATABASE = {
 
 calculators: [
-
+{
+    id:"percentage-calculator",
+    name:"Percentage Calculator",
+    icon:"📊",
+    description:"Calculate percentages easily.",
+    keywords:["percentage","percent","math","increase","decrease"],
+    featured:true,
+    popular:true
+}
 {
     id: "scientific-calculator",
 

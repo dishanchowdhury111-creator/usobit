@@ -8,6 +8,7 @@ const TOOL_FUNCTIONS = {
     "age-calculator": renderAgeCalculator,
     "percentage-calculator": renderPercentageCalculator,
     "length-converter": renderLengthConverter,
+    "gst-calculator": renderGSTCalculator,
     "temperature-converter": renderTemperatureConverter,
     "password-generator": renderPasswordGenerator
 };
@@ -336,6 +337,38 @@ const result=metres/factors[to];
 document.getElementById("lengthResult").innerHTML=`
     <strong>${value} ${from}</strong><br>
     = <strong>${result.toFixed(6)} ${to}</strong>
+`;
+
+}
+function renderGSTCalculator(container){
+
+container.innerHTML += `
+
+<div class="converter">
+
+    <input
+        id="gstAmount"
+        type="number"
+        placeholder="Enter amount">
+
+    <select id="gstRate">
+        <option value="5">5% GST</option>
+        <option value="12">12% GST</option>
+        <option value="18" selected>18% GST</option>
+        <option value="28">28% GST</option>
+    </select>
+
+    <div class="converterRow">
+        <button onclick="addGST()">Add GST</button>
+        <button onclick="removeGST()">Remove GST</button>
+    </div>
+
+    <div id="gstResult" class="resultBox">
+        Result will appear here
+    </div>
+
+</div>
+
 `;
 
 }

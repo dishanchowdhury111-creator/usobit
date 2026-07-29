@@ -81,22 +81,20 @@ if (document.getElementById("categoryGrid")) {
 
 // ---------------- TOOL PAGE ----------------
 
-if (document.getElementById("toolContainer")) {
+const toolContainer = document.getElementById("toolContainer");
 
+if (toolContainer) {
+
+    const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
+
     const tool = TOOLS.find(t => t.id === id);
 
     if (tool) {
 
-        document.title = tool.name + " | Usobit";
-
-        const container = document.getElementById("toolContainer");
-
-        container.innerHTML = `
+        toolContainer.innerHTML = `
             <h1>${tool.icon} ${tool.name}</h1>
-            <br>
             <p>${tool.description}</p>
-            <br><br>
             <div id="toolApp"></div>
         `;
 
@@ -104,14 +102,14 @@ if (document.getElementById("toolContainer")) {
 
         if (TOOL_FUNCTIONS[tool.id]) {
             TOOL_FUNCTIONS[tool.id](app);
+        } else {
+            app.innerHTML = "<p>Tool function not found.</p>";
         }
 
     } else {
-        document.getElementById("toolContainer").innerHTML =
-            "<h2>Tool Not Found</h2>";
+        toolContainer.innerHTML = "<h2>Tool not found</h2>";
     }
 }
-
 // ---------------- DARK MODE ----------------
 
 const themeButton = document.getElementById("themeButton");

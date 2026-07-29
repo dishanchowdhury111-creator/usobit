@@ -2,6 +2,15 @@ const DATABASE = {
 
     calculators: [
         {
+    id:"gst-calculator",
+    name:"GST Calculator",
+    icon:"🧾",
+    description:"Add or remove GST from a price.",
+    keywords:["gst","tax","price","invoice","india"],
+    featured:true,
+    popular:true
+}
+        {
             id: "scientific-calculator",
             name: "Scientific Calculator",
             icon: "🧮",

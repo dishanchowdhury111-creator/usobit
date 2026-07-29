@@ -3,19 +3,13 @@
 // ======================================
 
 const TOOL_FUNCTIONS = {
-
     "scientific-calculator": renderScientificCalculator,
-
     "bmi-calculator": renderBMICalculator,
-    "percentage-calculator": renderPercentageCalculator,
     "age-calculator": renderAgeCalculator,
-
+    "percentage-calculator": renderPercentageCalculator,
     "length-converter": renderLengthConverter,
-
     "temperature-converter": renderTemperatureConverter,
-
     "password-generator": renderPasswordGenerator
-
 };
 
 

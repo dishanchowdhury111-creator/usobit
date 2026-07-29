@@ -356,75 +356,10 @@ document.getElementById("lengthResult").innerHTML=`
 function renderGSTCalculator(container){
 
 container.innerHTML += `
-
-<div class="converter">
-
-    <input
-        id="gstAmount"
-        type="number"
-        placeholder="Enter amount">
-
-    <select id="gstRate">
-        <option value="5">5% GST</option>
-        <option value="12">12% GST</option>
-        <option value="18" selected>18% GST</option>
-        <option value="28">28% GST</option>
-    </select>
-
-    <div class="converterRow">
-        <button onclick="addGST()">Add GST</button>
-        <button onclick="removeGST()">Remove GST</button>
+    <div class="resultBox">
+        <h3>🧾 GST Calculator</h3>
+        <p>GST Calculator is connected successfully.</p>
     </div>
-
-    <div id="gstResult" class="resultBox">
-        Result will appear here
-    </div>
-
-</div>
-
-`;
-
-}
-function addGST(){
-
-const amount=parseFloat(document.getElementById("gstAmount").value);
-const rate=parseFloat(document.getElementById("gstRate").value);
-
-if(isNaN(amount)){
-    document.getElementById("gstResult").innerHTML=
-        "Please enter a valid amount.";
-    return;
-}
-
-const gst=amount*rate/100;
-const total=amount+gst;
-
-document.getElementById("gstResult").innerHTML=`
-    <strong>Original Amount:</strong> ₹${amount.toFixed(2)}<br>
-    <strong>GST (${rate}%):</strong> ₹${gst.toFixed(2)}<br>
-    <strong>Total Amount:</strong> ₹${total.toFixed(2)}
-`;
-
-}
-
-function removeGST(){
-
-const total=parseFloat(document.getElementById("gstAmount").value);
-const rate=parseFloat(document.getElementById("gstRate").value);
-
-if(isNaN(total)){
-    document.getElementById("gstResult").innerHTML=
-        "Please enter a valid amount.";
-    return;
-}
-
-const original=total/(1+rate/100);
-const gst=total-original;
-
-document.getElementById("gstResult").innerHTML=`
-    <strong>Total Amount:</strong> ₹${total.toFixed(2)}<br>
-    <strong>Original Amount:</strong> ₹${original.toFixed(2)}<br>
-    <strong>GST Included:</strong> ₹${gst.toFixed(2)}
 `;
 
 }

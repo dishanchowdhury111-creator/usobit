@@ -7,35 +7,40 @@ const DATABASE = {
             id: "scientific-calculator",
             name: "Scientific Calculator",
             icon: "🧮",
-            description: "Advanced mathematical calculator."
+            description: "Advanced mathematical calculator.",
+            keywords: ["math", "scientific", "calculator"]
         },
 
         {
             id: "bmi-calculator",
             name: "BMI Calculator",
             icon: "⚖️",
-            description: "Calculate your Body Mass Index."
+            description: "Calculate your Body Mass Index.",
+            keywords: ["bmi", "health", "weight"]
         },
 
         {
             id: "age-calculator",
             name: "Age Calculator",
             icon: "🎂",
-            description: "Calculate your exact age from your date of birth."
+            description: "Calculate your exact age from your date of birth.",
+            keywords: ["age", "birthday", "date"]
         },
 
         {
             id: "percentage-calculator",
             name: "Percentage Calculator",
             icon: "📊",
-            description: "Find percentages quickly and easily."
+            description: "Find percentages quickly and easily.",
+            keywords: ["percentage", "percent", "math"]
         },
 
         {
             id: "gst-calculator",
             name: "GST Calculator",
             icon: "🧾",
-            description: "Add or remove GST from an amount."
+            description: "Add or remove GST from an amount.",
+            keywords: ["gst", "tax", "invoice"]
         }
 
     ],
@@ -46,14 +51,16 @@ const DATABASE = {
             id: "length-converter",
             name: "Length Converter",
             icon: "📏",
-            description: "Convert metres, kilometres, inches, feet and more."
+            description: "Convert metres, kilometres, inches, feet and more.",
+            keywords: ["length", "distance", "metre"]
         },
 
         {
             id: "temperature-converter",
             name: "Temperature Converter",
             icon: "🌡️",
-            description: "Convert Celsius, Fahrenheit and Kelvin."
+            description: "Convert Celsius, Fahrenheit and Kelvin.",
+            keywords: ["temperature", "celsius", "fahrenheit"]
         }
 
     ],
@@ -64,7 +71,8 @@ const DATABASE = {
             id: "password-generator",
             name: "Password Generator",
             icon: "🔑",
-            description: "Generate strong random passwords."
+            description: "Generate strong random passwords.",
+            keywords: ["password", "security", "random"]
         }
 
     ]

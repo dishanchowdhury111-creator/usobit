@@ -216,6 +216,52 @@ document.getElementById("ageResult").innerHTML=`
 `;
 
 }
+function renderPercentageCalculator(container){
+
+container.innerHTML += `
+
+<div class="converter">
+
+    <h3>What is X% of Y?</h3>
+
+    <input id="percentX" type="number" placeholder="X">
+    <input id="percentY" type="number" placeholder="Y">
+
+    <button onclick="calculatePercentage()">
+        Calculate
+    </button>
+
+    <div id="percentageResult" class="resultBox">
+        Result will appear here
+    </div>
+
+</div>
+
+`;
+
+}
+function calculatePercentage(){
+
+const x=parseFloat(document.getElementById("percentX").value);
+const y=parseFloat(document.getElementById("percentY").value);
+
+if(isNaN(x)||isNaN(y)){
+
+    document.getElementById("percentageResult").innerHTML=
+        "Please enter valid numbers.";
+
+    return;
+
+}
+
+const result=(x/100)*y;
+
+document.getElementById("percentageResult").innerHTML=`
+    <strong>${x}% of ${y}</strong><br>
+    = <strong>${result}</strong>
+`;
+
+}
 function renderLengthConverter(container){
 
 container.innerHTML += `

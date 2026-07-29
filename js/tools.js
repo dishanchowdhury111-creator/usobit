@@ -2,15 +2,28 @@
 // USOBIT TOOL ENGINE
 // ======================================
 
+// ======================================
+// USOBIT TOOL ENGINE
+// ======================================
+
 const TOOL_FUNCTIONS = {
+
     "scientific-calculator": renderScientificCalculator,
+
     "bmi-calculator": renderBMICalculator,
+
     "age-calculator": renderAgeCalculator,
+
     "percentage-calculator": renderPercentageCalculator,
-    "length-converter": renderLengthConverter,
+
     "gst-calculator": renderGSTCalculator,
+
+    "length-converter": renderLengthConverter,
+
     "temperature-converter": renderTemperatureConverter,
+
     "password-generator": renderPasswordGenerator
+
 };
 
 
